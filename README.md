@@ -91,7 +91,7 @@ You can of course also just ignore the filter and create your own player.
 <div>
     {{ record.brightcove|brightcovePlayer({some: options}) }}
 </div>
-``
+```
 
 ## ToDo / Wishlist
 
@@ -99,3 +99,4 @@ You can of course also just ignore the filter and create your own player.
   * **Nice to Have** Find a better way to update the image preview after change from importer
   * **Major** Create the twig function for the brightcove player
   * **Minor** Make the player template overridable by theme
+  * **Minor** Proper date format in Brightcove preview box
