@@ -1,0 +1,28 @@
+{
+    "name": "cnd/brightcove",
+    "description": "Import birghtcove videos into bolt.",
+    "type": "bolt-extension",
+    "keywords": ["bolt", "brightcove", "video"],
+    "require": {
+        "bolt/bolt": ">=2.0.0,<3.0.0"
+    },
+    "license": "Private",
+    "authors": [
+        {
+            "name": "Condé Nast",
+            "email": "tobias.bulla@condenast.de",
+            "homepage": "https://cndevteamwiki.condenastdigital.de/doku.php/wiki/bolt/brightcove"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "init.php"
+        ],
+        "psr-4": {
+            "Bolt\\Extension\\CND\\Brightcove\\": ""
+        }
+    },
+    "extra": {
+        "bolt-assets": "assets"
+    }
+}
