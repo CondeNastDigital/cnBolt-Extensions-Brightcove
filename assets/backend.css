@@ -49,3 +49,8 @@
     top: 41px;
     display: none;
 }
+
+.brightcove label img {
+    height: 23px;
+    margin-top: -5px;
+}
