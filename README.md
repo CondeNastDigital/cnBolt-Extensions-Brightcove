@@ -92,3 +92,10 @@ You can of course also just ignore the filter and create your own player.
     {{ record.brightcove|brightcovePlayer({some: options}) }}
 </div>
 ``
+
+## ToDo / Wishlist
+
+  * **Nice To Have** Use a working alternative to *Bolt.conf("paths.root")* to get web root inside js scripts
+  * **Nice to Have** Find a better way to update the image preview after change from importer
+  * **Major** Create the twig function for the brightcove player
+  * **Minor** Make the player template overridable by theme
