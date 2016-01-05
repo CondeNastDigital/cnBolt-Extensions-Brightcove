@@ -37,40 +37,40 @@ function initBrightcoveField(fieldId, rootPath){
  */
 function brightcovePreload(fieldId, bcid){
     $.ajax({
-        method: "GET",
-        url: brightcoveCmsRoot+"brightcove/search",
-        dataType: "json",
-        data: { term: bcid }
-    })
-    .success(function(data) {
-        // Video object found
-        if($.isArray(data) && data.length > 0) {
-            item = data[0];
-            $("#"+fieldId).data("item", item);
+            method: "GET",
+            url: brightcoveCmsRoot+"brightcove/search",
+            dataType: "json",
+            data: { term: bcid }
+        })
+        .success(function(data) {
+            // Video object found
+            if($.isArray(data) && data.length > 0) {
+                item = data[0];
+                $("#"+fieldId).data("item", item);
 
-            var preview = brightcovePreview(item, false).addClass("clearfix");
-            $(".brightcove-"+fieldId+" .current").html(preview);
+                var preview = brightcovePreview(item, false).addClass("clearfix");
+                $(".brightcove-"+fieldId+" .current").html(preview);
 
-            $(".brightcove-"+fieldId+" .current").removeClass("error");
-            $(".brightcove-"+fieldId+" .current-wrapper").show();
-            $(".brightcove-"+fieldId+" button").show();
-        }
-        // Video object not found
-        else {
-            $(".brightcove-"+fieldId+" .current").html("Video not found. Please search for a new one.");
+                $(".brightcove-"+fieldId+" .current").removeClass("error");
+                $(".brightcove-"+fieldId+" .current-wrapper").show();
+                $(".brightcove-"+fieldId+" button").show();
+            }
+            // Video object not found
+            else {
+                $(".brightcove-"+fieldId+" .current").html("Video not found. Please search for a new one.");
+
+                $(".brightcove-"+fieldId+" .current").addClass("error");
+                $(".brightcove-"+fieldId+" .current-wrapper").show();
+                $(".brightcove-"+fieldId+" button").hide();
+            }
+        })
+        .error(function(){
+            $(".brightcove-"+fieldId+" .current").html("Error while contacting Brighcove");
 
             $(".brightcove-"+fieldId+" .current").addClass("error");
             $(".brightcove-"+fieldId+" .current-wrapper").show();
             $(".brightcove-"+fieldId+" button").hide();
-        }
-    })
-    .error(function(){
-        $(".brightcove-"+fieldId+" .current").html("Error while contacting Brighcove");
-
-        $(".brightcove-"+fieldId+" .current").addClass("error");
-        $(".brightcove-"+fieldId+" .current-wrapper").show();
-        $(".brightcove-"+fieldId+" button").hide();
-    })
+        })
 }
 
 /**
@@ -98,7 +98,7 @@ function brightcoveImport(fieldId, map){
     if("text" in map) {
         for (var key in map["text"]) {
             var value = brightcoveGetPath(item, map["text"][key]);
-            $("[name=" + key + "]").val(value);
+            $("[name=" + key + "]").val(value); // TODO: Does not update ckeditor managed text areas
         }
     }
     // Copy and import image data
@@ -108,19 +108,18 @@ function brightcoveImport(fieldId, map){
 
             if(url){
                 $.ajax({
-                    method: "POST",
-                    url: Bolt.conf('paths.root')+"brightcove/importImage",
-                    dataType: "json",
-                    data: { url: url, bcid: item.id }
-                })
-                .success(function(data) {
-                    if(data.path != undefined) {
-                        $("[name=" + key + "\\[file\\]]").val(data.path);
-                        var preview = brightcoveCmsRoot+"thumbs/200x150c/"+data.path;
-                        console.log(preview);
-                        $("#thumbnail-" + key + " img").attr("src", preview);
-                    }
-                });
+                        method: "POST",
+                        url: Bolt.conf('paths.root')+"brightcove/importImage",
+                        dataType: "json",
+                        data: { url: url, bcid: item.id }
+                    })
+                    .success(function(data) {
+                        if(data.path != undefined) {
+                            $("[name=" + key + "\\[file\\]]").val(data.path);
+                            var preview = brightcoveCmsRoot+"thumbs/200x150c/"+data.path;
+                            $("#thumbnail-" + key + " img").attr("src", preview);
+                        }
+                    });
             }
         }
     }
