@@ -32,7 +32,7 @@ class Extension extends BaseExtension
      */
     public function initialize() {
         // Frontend twig function
-        $this->addTwigFilter('bcPlayer', 'twigBCPlayer');
+        $this->addTwigFilter('brightcovePlayer', 'twigBCPlayer');
 
         // New field
         $this->app['config']->getFields()->addField(new BrightcoveField());
@@ -43,6 +43,10 @@ class Extension extends BaseExtension
             $this->addJquery();
             $this->addJavascript('assets/backend.js', true);
 			$this->addCSS('assets/backend.css');
+        }
+        // Frontend assets
+        else {
+            $this->addCSS('assets/frontend.css');
         }
 
         // Set up the routes for backend ajax calls
@@ -66,10 +70,22 @@ class Extension extends BaseExtension
      */
     function twigBCPlayer($input, $options = array())
     {
-        $rendered = $this->app['render']->render($template, array("record" => $record));
-        $input = str_replace($match[0], $rendered, $input);
+        $defaults = array(
+            "template" => "brightcove_player.twig",
+            "player" => $this->config["player"],
+            "account" => $this->config["account"]
+        );
 
-        return new Twig_Markup($input, 'UTF-8');
+        $options = $options + $this->config["options"] + $defaults;
+
+        $rendered = $this->app['render']->render($options["template"], array(
+            "video" => array(
+                "id" => $input
+            ),
+            "options" => $options
+        ));
+
+        return new Twig_Markup($rendered, 'UTF-8');
     }
 
 }

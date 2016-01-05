@@ -1,9 +1,13 @@
-service:
-    authapi: https://oauth.brightcove.com/v3/access_token?grant_type=client_credentials
-    cmsapi: https://cms.api.brightcove.com/v1/accounts/{account}/
+authapi: https://oauth.brightcove.com/v3/access_token?grant_type=client_credentials
+cmsapi: https://cms.api.brightcove.com/v1/accounts/{account}/
 
-    account:
-    client:
-    secret:
+account:
+client:
+secret:
+player:
 
-    search-filter: []
+search-filter: []
+
+options:
+    # social: []
+    # ima3: []

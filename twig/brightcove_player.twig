@@ -1,0 +1,54 @@
+<div class="bcvideo-player-wrapper">
+    <div class="bcvideo-player cnvideo">
+        <video
+                id="video-{{ video.id }}"
+                data-account="{{ options.account }}"
+                data-player="{{ options.player }}"
+                data-embed="default"
+                data-setup='{"techOrder": ["html5", "hls", "flash"]}'
+                data-video-id='{{ video.id }}'
+                class="video-js" controls></video>
+        <script src="//players.brightcove.net/{{ options.account }}/{{ options.player }}_default/index.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                var video_id = 'video-{{ video.id }}';
+
+                videojs(video_id).ready(function(){
+                    var myPlayer = this;
+                    var n = 0;
+                    var endedFired = false;
+                    var step = [];
+
+                    var language_options = {
+                        "Share Video": "Video",
+                        "Share via": "Jetzt Video teilen",
+                        "Direct Link": "Link zum Kopieren",
+                        "Embed Code": "Code zum Einbetten"
+                    };
+                    videojs.addLanguage("de-DE", language_options);
+                    videojs.addLanguage("de", language_options);
+
+                    {% if(options.social is defined) %}
+                    myPlayer.social( {{ options.social|json_encode }} );
+                    {% endif %}
+                    {% if(options.ima3 is defined) %}
+                    myPlayer.ima3( {{ options.ima3|json_encode }} );
+                    {% endif %}
+
+                    myPlayer.catalog.getVideo('{{ video.id }}', function(error, video) {
+                        myPlayer.catalog.load(video);
+                    });
+
+                    // Ended
+                    myPlayer.on("ended", function(){
+                        if (!endedFired){ // ima method calls the "ended" event twice
+                            myPlayer.trigger("endscreen");
+                            endedFired = true;
+                        }
+                    });
+                });
+            });
+        </script>
+    </div>
+</div>
