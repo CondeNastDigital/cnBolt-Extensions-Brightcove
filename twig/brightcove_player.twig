@@ -29,10 +29,10 @@
                     videojs.addLanguage("de-DE", language_options);
                     videojs.addLanguage("de", language_options);
 
-                    {% if(options.social is defined) %}
+                    {% if(options.social is defined and options.social) %}
                     myPlayer.social( {{ options.social|json_encode }} );
                     {% endif %}
-                    {% if(options.ima3 is defined) %}
+                    {% if(options.ima3 is defined and options.ima3) %}
                     myPlayer.ima3( {{ options.ima3|json_encode }} );
                     {% endif %}
 
