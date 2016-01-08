@@ -59,7 +59,7 @@ class Extension extends BaseExtension
      */
     public function getName()
     {
-        return "ShortCodes";
+        return "Brightcove";
     }
 
     /**
