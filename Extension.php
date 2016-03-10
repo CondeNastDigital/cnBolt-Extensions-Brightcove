@@ -41,8 +41,8 @@ class Extension extends BaseExtension
         if ($this->app['config']->getWhichEnd()=='backend'){
             $this->app['htmlsnippets'] = true;
             $this->addJquery();
-            $this->addJavascript('assets/backend.js', true);
-			$this->addCSS('assets/backend.css');
+            $this->addJavascript('assets/backend.js');
+	    $this->addCSS('assets/backend.css');
         }
         // Frontend assets
         else {
