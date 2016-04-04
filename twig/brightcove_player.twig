@@ -37,6 +37,10 @@
 
                     myPlayer.catalog.getVideo('{{ video.id }}', function(error, video) {
                         myPlayer.catalog.load(video);
+
+                        if(window.location.search.search('autostart=true') > 0){
+                            myPlayer.play();
+                        }                          
                     });
 
                     // Ended
