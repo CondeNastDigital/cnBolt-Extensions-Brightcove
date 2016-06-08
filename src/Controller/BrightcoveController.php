@@ -19,7 +19,7 @@ class BrightcoveController implements ControllerProviderInterface
     {
         $this->app = $app;
         $this->config = $config;
-        $this->app['twig.loader.filesystem']->prependPath(__DIR__."/../twig");
+        $this->app['twig.loader.filesystem']->prependPath(__DIR__."/../../templates");
     }
 
     public function connect(\Silex\Application $app)
