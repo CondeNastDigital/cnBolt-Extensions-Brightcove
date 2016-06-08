@@ -90,6 +90,9 @@ function brightcovePreview(item, linked){
  * @param map
  */
 function brightcoveImport(fieldId, map){
+
+    console.log(brightcoveCmsRoot);return;
+
     var item = $("#"+fieldId).data("item");
 
     console.log(item);
@@ -109,7 +112,7 @@ function brightcoveImport(fieldId, map){
             if(url){
                 $.ajax({
                         method: "POST",
-                        url: Bolt.conf('paths.root')+"brightcove/importImage",
+                        url: brightcoveCmsRoot+"brightcove/importImage",
                         dataType: "json",
                         data: { url: url, bcid: item.id }
                     })

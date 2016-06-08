@@ -36,9 +36,9 @@ value:          '',
 
 <fieldset class="brightcove brightcove-{{ key }} text">
     <div class="col-sm-12">
-        <label class="control-label">{{ (option.info) ? macro.infopop(labelkey, option.info) : labelkey }}<img src="{{ paths.extensions }}vendor/cnd/brightcove/assets/brightcove_logo.png"></label>
+        <label class="control-label">{{ (option.info) ? macro.infopop(labelkey, option.info) : labelkey }}<img src="{{ paths.extensions }}vendor/cnd/brightcove/images/brightcove_logo.png"></label>
         <input{{ macro.attr(attr_text) }}>
-        <img src="{{ paths.extensions }}vendor/cnd/brightcove/assets/ajax-loader.gif" class="spinner">
+        <img src="{{ paths.extensions }}vendor/cnd/brightcove/images/ajax-loader.gif" class="spinner">
         <input name="{{ key }}" name="{{ key }}" id="{{ key }}" value="{{ context.content.get(contentkey) }}" type="hidden" value="">
     </div>
     <div class="col-sm-12 current-wrapper">
@@ -46,8 +46,9 @@ value:          '',
         <button type="button" class="btn btn-secondary pull-right" onClick="brightcoveImport('{{ key }}', {{ field.import|json_encode }})">{{ option.buttonImport }}</button>
     </div>
 </fieldset>
+
 <script>
     $(function() {
-        initBrightcoveField("{{ key }}", "{{ paths.root }}"); // we should have Bolt.conf("paths.root") but it seems we dont. At least during execution of our init.
+        initBrightcoveField("{{ key }}", "{{ paths.bolt }}"); // we should have Bolt.conf("paths.root") but it seems we dont. At least during execution of our init.
     });
 </script>

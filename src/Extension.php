@@ -3,6 +3,7 @@
 namespace Bolt\Extension\CND\Brightcove;
 
 use Bolt\Asset\File\JavaScript;
+use Bolt\Asset\File\Stylesheet;
 use Bolt\Controller\Zone;
 use Bolt\Extension\CND\Brightcove\Controller\BrightcoveController;
 use Bolt\Extension\SimpleExtension;
@@ -75,8 +76,8 @@ class Extension extends SimpleExtension
     {
         return [
             (new JavaScript('js/backend.js'))->setZone(Zone::BACKEND)->setPriority(10),
-            (new JavaScript('css/backend.css'))->setZone(Zone::BACKEND),
-            (new JavaScript('css/frontend.css'))->setZone(Zone::FRONTEND),
+            (new Stylesheet('css/backend.css'))->setZone(Zone::BACKEND),
+            (new Stylesheet('css/frontend.css'))->setZone(Zone::FRONTEND),
         ];
     }
 
