@@ -91,8 +91,6 @@ function brightcovePreview(item, linked){
  */
 function brightcoveImport(fieldId, map){
 
-    console.log(brightcoveCmsRoot);return;
-
     var item = $("#"+fieldId).data("item");
 
     console.log(item);
