@@ -1,0 +1,49 @@
+.bcvideo-player-wrapper {
+    font-style: normal;
+    position: relative;
+    width: 100%;
+}
+iframe.bcvideo-player {
+    border: 0 none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.bcvideo-player {
+    width: 100%;
+    padding-bottom: 56.2%;
+    position: relative;
+    font-style: normal;
+}
+.bcvideo-player video,
+.bcvideo-player .video-js,
+.bcvideo-player .vjs-poster,
+.bcvideo-player .vjs-social-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.bcvideo-player .vjs-poster {
+    background-size: cover;
+}
+.bcvideo-player .vjs-big-play-button {
+    top: 50% !important;
+    left: 50% !important;
+    margin-left: -78px !important;
+    margin-top: -56px !important;
+}
+
+.bcvideo-player .vjs-social-overlay {
+    background-color: rgba(0,0,0,.75);
+    box-sizing: border-box;
+    padding: 3%;
+    font-size: 100%;
+}
+
+.bcvideo-player .vjs-social-overlay .vjs-control-text:before {
+    display: none;
+}
