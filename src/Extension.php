@@ -74,6 +74,8 @@ class Extension extends SimpleExtension
      */
     protected function registerAssets()
     {
+        $this->addJquery();
+
         return [
             (new JavaScript('js/backend.js'))->setZone(Zone::BACKEND)->setPriority(10),
             (new Stylesheet('css/backend.css'))->setZone(Zone::BACKEND),
