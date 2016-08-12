@@ -11,7 +11,7 @@
         {
             "name": "Condé Nast Verlag GmbH",
             "email": "tobias.bulla@condenast.de",
-            "homepage": "https://cndevteamwiki.condenastdigital.de/doku.php/wiki/bolt/brightcove"
+            "homepage": "https://techblog.condenast.de"
         }
     ],
     "autoload": {
@@ -21,9 +21,6 @@
     },
     "extra": {
         "bolt-assets": "web",
-        "branch-alias" : {
-            "dev-bolt3" : "2.0.x-dev"
-        },
         "bolt-class": "Bolt\\Extension\\CND\\Brightcove\\Extension"
     }
 }
