@@ -21,6 +21,10 @@
     },
     "extra": {
         "bolt-assets": "web",
-        "bolt-class": "Bolt\\Extension\\CND\\Brightcove\\Extension"
+        "bolt-class": "Bolt\\Extension\\CND\\Brightcove\\Extension",
+        "bolt-icon": "icon_marketplace.png",
+        "bolt-screenshots": [
+            "screen_marketplace.png"
+        ]
     }
 }
