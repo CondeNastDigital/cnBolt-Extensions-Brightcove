@@ -1,8 +1,8 @@
 <?php
 
-namespace Bolt\Extension\CND\Brightcove;
+namespace Bolt\Extension\CND\Brightcove\Field;
 
-use Bolt\Field\FieldInterface;
+use Bolt\Storage\Field\FieldInterface;
 
 class BrightcoveField implements FieldInterface
 {

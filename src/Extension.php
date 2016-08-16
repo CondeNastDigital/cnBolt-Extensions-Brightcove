@@ -2,10 +2,11 @@
 
 namespace Bolt\Extension\CND\Brightcove;
 
-use Bolt\BaseExtension;
-use Bolt\Content;
+use Bolt\Asset\File\JavaScript;
+use Bolt\Asset\File\Stylesheet;
+use Bolt\Controller\Zone;
 use Bolt\Extension\CND\Brightcove\Controller\BrightcoveController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Bolt\Extension\SimpleExtension;
 use Twig_Markup;
 
 /**
@@ -24,42 +25,62 @@ use Twig_Markup;
  *
  * @package Bolt\Extension\CND\ShortCodes
  */
-class Extension extends BaseExtension
+class Extension extends SimpleExtension
 {
-
     /**
-     * Bolt Extension Initialization
+     * {@inheritdoc}
      */
-    public function initialize() {
-        // Frontend twig function
-        $this->addTwigFilter('brightcovePlayer', 'twigBCPlayer');
-
-        // New field
-        $this->app['config']->getFields()->addField(new BrightcoveField());
-
-        // Backend object selection
-        if ($this->app['config']->getWhichEnd()=='backend'){
-            $this->app['htmlsnippets'] = true;
-            $this->addJquery();
-            $this->addJavascript('assets/backend.js', array("late" => true));
-	    $this->addCSS('assets/backend.css');
-        }
-        // Frontend assets
-        else {
-            $this->addCSS('assets/frontend.css');
-        }
-
-        // Set up the routes for backend ajax calls
-        $this->app->mount('/brightcove', new BrightcoveController($this->app, $this->config));
+    public function registerFields()
+    {
+        return [
+            new Field\BrightcoveField(),
+        ];
     }
 
     /**
-     * Return the name of this extension
-     * @return string
+     * {@inheritdoc}
      */
-    public function getName()
+    protected function registerTwigPaths()
     {
-        return "Brightcove";
+        return ['templates'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function registerBackendControllers()
+    {
+        /* @var \Bolt\Application $app */
+        $app = $this->getContainer();
+        $config = $this->getConfig();
+
+        return [
+            '/brightcove' => new BrightcoveController($app, $config),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function registerTwigFilters()
+    {
+        return [
+           'brightcovePlayer' => 'twigBCPlayer',
+         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function registerAssets()
+    {
+        $this->addJquery();
+
+        return [
+            (new JavaScript('js/backend.js'))->setZone(Zone::BACKEND)->setPriority(10),
+            (new Stylesheet('css/backend.css'))->setZone(Zone::BACKEND),
+            (new Stylesheet('css/frontend.css'))->setZone(Zone::FRONTEND),
+        ];
     }
 
     /**
@@ -68,17 +89,18 @@ class Extension extends BaseExtension
      * @param array $options     (Optional) additional options like "contenttypes"
      * @return Twig_Markup       parsed and replaced content
      */
+
     function twigBCPlayer($input, $options = array())
     {
         $defaults = array(
             "template" => "brightcove_player.twig",
-            "player" => $this->config["player"],
-            "account" => $this->config["account"]
+            "player" => $this->getConfig()["player"],
+            "account" => $this->getConfig()["account"]
         );
 
-        $options = $options + $this->config["options"] + $defaults;
+        $options = $options + $this->getConfig()["options"] + $defaults;
 
-        $rendered = $this->app['render']->render($options["template"], array(
+        $rendered = $this->renderTemplate($options["template"], array(
             "video" => array(
                 "id" => $input
             ),

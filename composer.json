@@ -1,28 +1,30 @@
 {
     "name": "cnd/brightcove",
-    "description": "Import birghtcove videos into bolt.",
+    "description": "Import Brightcove videos into bolt.",
     "type": "bolt-extension",
     "keywords": ["bolt", "brightcove", "video"],
     "require": {
-        "bolt/bolt": ">=2.0.0,<3.0.0"
+        "bolt/bolt": ">=3.0.0,<4.0.0"
     },
     "license": "Private",
     "authors": [
         {
-            "name": "Condé Nast",
+            "name": "Condé Nast Verlag GmbH",
             "email": "tobias.bulla@condenast.de",
-            "homepage": "https://cndevteamwiki.condenastdigital.de/doku.php/wiki/bolt/brightcove"
+            "homepage": "https://techblog.condenast.de"
         }
     ],
     "autoload": {
-        "files": [
-            "init.php"
-        ],
         "psr-4": {
-            "Bolt\\Extension\\CND\\Brightcove\\": ""
+            "Bolt\\Extension\\CND\\Brightcove\\": "src"
         }
     },
     "extra": {
-        "bolt-assets": "assets"
+        "bolt-assets": "web",
+        "bolt-class": "Bolt\\Extension\\CND\\Brightcove\\Extension",
+        "bolt-icon": "icon_marketplace.png",
+        "bolt-screenshots": [
+            "screen_marketplace.png"
+        ]
     }
 }

@@ -3,15 +3,10 @@
 namespace Bolt\Extension\CND\Brightcove\Controller;
 
 use Bolt\Application;
-use Bolt\Content;
 use Exception;
 use Silex\ControllerProviderInterface;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Filesystem\Filesystem;
 
 class BrightcoveController implements ControllerProviderInterface
 {
@@ -24,7 +19,7 @@ class BrightcoveController implements ControllerProviderInterface
     {
         $this->app = $app;
         $this->config = $config;
-        $this->app['twig.loader.filesystem']->prependPath(__DIR__."/../twig");
+        $this->app['twig.loader.filesystem']->prependPath(__DIR__."/../../templates");
     }
 
     public function connect(\Silex\Application $app)
