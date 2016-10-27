@@ -5,7 +5,7 @@ function initBrightcoveField(fieldId, rootPath){
     brightcoveCmsRoot = rootPath;
 
     // Initialize Autocomplete
-    $( ".brightcove input" ).autocomplete({
+    $( ".brightcove-"+fieldId+" input" ).autocomplete({
         source: brightcoveCmsRoot+"brightcove/search",
         minLength: 3,
         select: function( event, ui ) {
@@ -92,8 +92,6 @@ function brightcovePreview(item, linked){
 function brightcoveImport(fieldId, map){
 
     var item = $("#"+fieldId).data("item");
-
-    console.log(item);
 
     // Copy text data
     if("text" in map) {
