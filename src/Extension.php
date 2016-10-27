@@ -76,8 +76,19 @@ class Extension extends SimpleExtension
     {
         $this->addJquery();
 
+        $resources    = $this->container['resources'];
+        $extensionUrl = $resources->getUrl('bolt').'brightcove';
+        $extensionWebPath = $resources->getUrl('extensions')."vendor/cnd/brightcove/";
+
         return [
             (new JavaScript('js/backend.js'))->setZone(Zone::BACKEND)->setPriority(10),
+            (new JavaScript('js/extension-for/sir-trevor.js'))
+                ->setZone(Zone::BACKEND)
+                ->setPriority(11)
+                ->setAttributes([
+                    'data-extension-url="'.$extensionUrl.'"',
+                    'data-extension-web-path="'.$extensionWebPath.'"'
+                ]),
             (new Stylesheet('css/backend.css'))->setZone(Zone::BACKEND),
             (new Stylesheet('css/frontend.css'))->setZone(Zone::FRONTEND),
         ];
