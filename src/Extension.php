@@ -77,7 +77,7 @@ class Extension extends SimpleExtension
         $this->addJquery();
 
         $resources    = $this->container['resources'];
-        $extensionUrl = $resources->getUrl('bolt').'brightcove';
+        $extensionUrl = $resources->getUrl('bolt');
         $extensionWebPath = $resources->getUrl('extensions')."vendor/cnd/brightcove/";
 
         return [
