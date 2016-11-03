@@ -15,6 +15,7 @@ if(typeof(SirTrevor)) {
         textable: true,
 
         editorHTML: '<div class="st-block frontend-target brightcove">'+
+                    '    <h2>Brightcove</h2>'+
                     '    <input class="form-control ui-autocomplete-input ui-autocomplete-loading" id="" maxlength="30" name="" placeholder="Enter a term or id to search for brightcove videos" type="text" value="" autocomplete="off">'+
                     '    <img src="" class="spinner">'+
                     '    <input class="data-target" id="" type="hidden" value="">'+
