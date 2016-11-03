@@ -1,4 +1,4 @@
-if(typeof(SirTrevor)) {
+if( typeof(SirTrevor) == "object" ) {
 
     SirTrevor.Blocks.Brightcove = SirTrevor.Block.extend({
 
