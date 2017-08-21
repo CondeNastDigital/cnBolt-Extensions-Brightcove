@@ -1,5 +1,6 @@
 <div class="bcvideo-player-wrapper">
     <div class="bcvideo-player cnvideo">
+
         <video
                 id="video-{{ video.id }}"
                 data-account="{{ options.account }}"
@@ -9,15 +10,30 @@
                 class="video-js" controls></video>
         <script src="//players.brightcove.net/{{ options.account }}/{{ options.player }}_default/index.min.js"></script>
 
+
         <script>
             $(document).ready(function() {
                 var video_id = 'video-{{ video.id }}';
 
-                videojs(video_id).ready(function(){
+                var player = bc(video_id);
+                {% if(options.ima3 is defined and options.ima3) %}
+                    var referrer_url = encodeURIComponent(self.location.href);
+                    var timestamp=new Date().getTime();
+
+                    player.ima3(
+                        {
+                            serverUrl: {{ options.ima3.serverUrl|raw }},
+                            timeout: "{{ options.ima3.timeout|raw }}",
+                            requestMode: "{{ options.ima3.requestMode|raw }}",
+                            adTechOrder: {{ options.ima3.adTechOrder|json_encode|raw }},
+                            debug: true
+                        }
+                    );
+                {% endif %}
+
+                player.ready(function() {
                     var myPlayer = this;
-                    var n = 0;
                     var endedFired = false;
-                    var step = [];
 
                     var language_options = {
                         "Share Video": "Video",
@@ -31,17 +47,6 @@
                     {% if(options.social is defined and options.social) %}
                     myPlayer.social( {{ options.social|json_encode }} );
                     {% endif %}
-                    {% if(options.ima3 is defined and options.ima3) %}
-                    myPlayer.ima3( {{ options.ima3|json_encode }} );
-                    {% endif %}
-
-                    myPlayer.catalog.getVideo('{{ video.id }}', function(error, video) {
-                        myPlayer.catalog.load(video);
-
-                        if(window.location.search.search('autostart=true') > 0){
-                            myPlayer.play();
-                        }                          
-                    });
 
                     // Ended
                     myPlayer.on("ended", function(){
