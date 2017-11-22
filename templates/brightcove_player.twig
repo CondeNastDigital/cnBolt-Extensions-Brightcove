@@ -1,3 +1,10 @@
+{% if(options.controls is defined and options.controls == "hide") %}
+    <style type="text/css">
+        .vjs-control-bar {
+            visibility:hidden!important;
+        }
+    </style>
+{% endif %}
 <div class="bcvideo-player-wrapper">
     <div class="bcvideo-player cnvideo">
 
@@ -48,12 +55,16 @@
                     myPlayer.social( {{ options.social|json_encode }} );
                     {% endif %}
 
+                    {% if(options.autostart is defined and options.autostart) %}
+                    myPlayer.play();
+                    {% else %}
                     myPlayer.catalog.getVideo('{{ video.id }}', function(error, video) {
                         myPlayer.catalog.load(video);
                         if(window.location.search.search('autostart=true') > 0){
                             myPlayer.play();
                         }
                     });
+                    {% endif %}
 
                     // Ended
                     myPlayer.on("ended", function(){
