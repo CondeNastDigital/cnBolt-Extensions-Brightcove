@@ -6,7 +6,7 @@
         <style>
             #wrapper-{{ instanceid }} {
                 width: 100%;
-                padding-bottom: {{ 100 * (1/options.aspect) }}%;
+                padding-bottom: {{ (100 * (1/options.aspect))|number_format(10,'.','') }}%;
             }
 
         {% if not options.controls %}
