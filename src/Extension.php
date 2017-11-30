@@ -106,7 +106,13 @@ class Extension extends SimpleExtension
         $defaults = array(
             "template" => "brightcove_player.twig",
             "player" => $this->getConfig()["player"],
-            "account" => $this->getConfig()["account"]
+            "account" => $this->getConfig()["account"],
+            "controls" => true,
+            "muted" => false,
+            "loop" => false,
+            "preload" => false,
+            "autostart" => false,
+            "aspect" => 1.777
         );
 
         $options = $options + $this->getConfig()["options"] + $defaults;

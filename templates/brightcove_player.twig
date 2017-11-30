@@ -1,26 +1,46 @@
-{% if(options.controls is defined and options.controls == "hide") %}
-    <style type="text/css">
-        .vjs-control-bar {
-            visibility:hidden!important;
-        }
-    </style>
-{% endif %}
+{% set instanceid = buid() %}
+
 <div class="bcvideo-player-wrapper">
-    <div class="bcvideo-player cnvideo">
+    <div class="bcvideo-player cnvideo" id="wrapper-{{ instanceid }}">
+
+        <style>
+            #wrapper-{{ instanceid }} {
+                width: 100%;
+                padding-bottom: {{ 100 * (1/options.aspect) }}%;
+            }
+
+        {% if not options.controls %}
+            #wrapper-{{ instanceid }} .vjs-control-bar{
+                display:none!important;
+            }
+        {% endif %}
+
+        {% if options.loop %}
+            #wrapper-{{ instanceid }} .vjs-loading-spinner{
+                display:none!important;
+            }
+        {% endif %}
+
+        </style>
 
         <video
-                id="video-{{ video.id }}"
+                id="{{ instanceid }}"
                 data-account="{{ options.account }}"
                 data-player="{{ options.player }}"
                 data-embed="default"
                 data-video-id='{{ video.id }}'
-                class="video-js" controls></video>
+                class="video-js"
+                {{ options.muted    ? 'muted="muted"' }}
+                {{ options.controls ? 'controls="controls"' }}
+                {{ options.preload  ? 'preload="preload"' }}
+                {{ options.loop     ? 'loop="loop"' }}
+                {{ options.autoplay ? 'autoplay="autoplay"' }}
+        ></video>
         <script src="//players.brightcove.net/{{ options.account }}/{{ options.player }}_default/index.min.js"></script>
-
 
         <script>
             $(document).ready(function() {
-                var video_id = 'video-{{ video.id }}';
+                var video_id = '{{ instanceid }}';
 
                 var player = bc(video_id);
                 {% if(options.ima3 is defined and options.ima3) %}
