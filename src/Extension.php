@@ -111,11 +111,12 @@ class Extension extends SimpleExtension
             "muted" => false,
             "loop" => false,
             "preload" => false,
-            "autostart" => false,
-            "aspect" => 1.777
+            "autostart" => false
         );
 
         $options = $options + $this->getConfig()["options"] + $defaults;
+        if (!$options['aspect'])
+            $options['aspect'] = "1.777";
 
         $rendered = $this->renderTemplate($options["template"], array(
             "video" => array(
