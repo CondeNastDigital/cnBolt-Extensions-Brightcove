@@ -30,11 +30,11 @@
                 data-embed="default"
                 data-video-id='{{ video.id }}'
                 class="video-js"
-                {{ options.muted    ? 'muted="muted"' }}
-                {{ options.controls ? 'controls="controls"' }}
-                {{ options.preload  ? 'preload="preload"' }}
-                {{ options.loop     ? 'loop="loop"' }}
-                {{ options.autoplay ? 'autoplay="autoplay"' }}
+                {{ options.muted|default    ? 'muted="muted"' }}
+                {{ options.controls|default ? 'controls="controls"' }}
+                {{ options.preload|default  ? 'preload="preload"' }}
+                {{ options.loop|default     ? 'loop="loop"' }}
+                {{ options.autoplay|default ? 'autoplay="autoplay"' }}
         ></video>
         <script src="//players.brightcove.net/{{ options.account }}/{{ options.player }}_default/index.min.js"></script>
 
