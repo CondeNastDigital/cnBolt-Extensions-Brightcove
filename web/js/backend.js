@@ -125,6 +125,17 @@ function brightcoveImport(fieldId, map){
 }
 
 /**
+ * Remove video from bolt field
+ * @param fieldId
+ * @param map
+ */
+function brightcoveDelete(fieldId){
+    $("#"+fieldId).val("");
+    $(".brightcove-"+fieldId+" .current").html("");
+    $(".brightcove-"+fieldId+" .current-wrapper").hide();
+}
+
+/**
  * get an element from a mulit-level array by string path
  * See http://stackoverflow.com/questions/8817394/javascript-get-deep-value-from-object-by-passing-path-to-it-as-string
  * @param obj

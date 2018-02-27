@@ -32,10 +32,13 @@
     list-style: none;
 }
 
-.brightcove .current-wrapper button {
+.brightcove .current-wrapper .controls {
     position: absolute;
     right: 25px;
     top: 8px;
+}
+.brightcove .current-wrapper .controls button {
+    margin-left: 5px;
 }
 
 .brightcove .error {
