@@ -2,9 +2,9 @@
 
 namespace Bolt\Extension\CND\Brightcove\Field;
 
-use Bolt\Storage\Field\FieldInterface;
+use Bolt\Storage\Field\Type\FieldTypeBase;
 
-class BrightcoveField implements FieldInterface
+class BrightcoveField extends FieldTypeBase
 {
 
     public function getName()
@@ -20,11 +20,6 @@ class BrightcoveField implements FieldInterface
     public function getStorageType()
     {
         return 'text';
-    }
-
-    public function getStorageOptions()
-    {
-        return array('default'=>'');
     }
 
 }
