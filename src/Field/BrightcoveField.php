@@ -21,5 +21,10 @@ class BrightcoveField extends FieldTypeBase
     {
         return 'text';
     }
+    
+    public function getStorageOptions()
+    {
+        return ['notnull' => false];
+    }    
 
 }
