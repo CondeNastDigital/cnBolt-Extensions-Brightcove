@@ -3,6 +3,7 @@
 namespace Bolt\Extension\CND\Brightcove\Field;
 
 use Bolt\Storage\Field\Type\FieldTypeBase;
+use Doctrine\DBAL\Types\Type;
 
 class BrightcoveField extends FieldTypeBase
 {
@@ -19,7 +20,7 @@ class BrightcoveField extends FieldTypeBase
 
     public function getStorageType()
     {
-        return 'text';
+        return Type::getType('text');
     }
     
     public function getStorageOptions()
