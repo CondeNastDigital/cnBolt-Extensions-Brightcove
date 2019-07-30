@@ -3,15 +3,10 @@
 <div class="bcvideo-player-wrapper">
     <div class="bcvideo-player cnvideo" id="wrapper-{{ instanceid }}">
 
-        {% set paddingBottom = 56.2502460948 %}
-        {% if options.aspect|default(0) > 0 %}
-            {% set paddingBottom = (100 * (1/options.aspect))|number_format(10,'.','') %}
-        {% endif %}
-
         <style>
             #wrapper-{{ instanceid }} {
                 width: 100%;
-                padding-bottom: {{ paddingBottom }}%;
+                padding-bottom: {{ (100 * (1/options.aspect|default(1.777777)))|number_format(10,'.','') }}%;
             }
 
         {% if not options.controls %}

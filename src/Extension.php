@@ -115,7 +115,7 @@ class Extension extends SimpleExtension
         );
 
         $options = $options + $this->getConfig()["options"] + $defaults;
-        if (!isset($options['aspect']))
+        if (!isset($options['aspect']) || !$options['aspect']){
             $options['aspect'] = "1.777";
 
         $rendered = $this->renderTemplate($options["template"], array(
