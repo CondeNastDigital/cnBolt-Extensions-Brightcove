@@ -38,9 +38,8 @@
                 {{ options.playsinline|default(true) ? 'playsinline' }}
         ></video>
 
-        {% if hasFunction('consentRegisterScript') %}
-            {% set loaded = consentRegisterScript("https://players.brightcove.net/" ~ options.account ~"/" ~ options.player ~ "_default/index.min.js", 'TARGETING', 'Brightcove') %}
-        {% else %}
+        {% set loaded = callIfExists('consentRegisterScript',"https://players.brightcove.net/" ~ options.account ~"/" ~ options.player ~ "_default/index.min.js", 'TARGETING', 'Brightcove') %}
+        {% if not loaded %}
             <script src="//players.brightcove.net/{{ options.account }}/{{ options.player }}_default/index.min.js"></script>
         {% endif %}
 
